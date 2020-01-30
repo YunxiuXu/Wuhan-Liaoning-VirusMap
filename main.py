@@ -3,7 +3,6 @@
 import web
 import ftp
 import time
-import jstst
 
 
 if __name__ == "__main__":
