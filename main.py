@@ -3,8 +3,9 @@
 import web
 import ftp
 import time
+import jstst
 
-
+total_tmp = 0
 if __name__ == "__main__":
     while(1):
         #沈阳市, '大连市, '鞍山市, '抚顺市, '本溪市, '丹东市, '锦州市, '营口市, '阜新市, '辽阳市, '铁岭市, '朝阳市, '盘锦市, '葫芦岛
@@ -42,10 +43,15 @@ if __name__ == "__main__":
         map.render(path="./liaoning.html")
         web.writeEnd()
 
+        jstst.addJs()
 
-        #ftp.ftp_upload()#上传至你自己网站的FTP
+        if(total != total_tmp):
+            try:
+                #ftp.ftp_upload()#ftp上传代码 用于更新网站
+                total_tmp = total
+            except:
+                print("ftp failed")
 
-
-        for i in range(60):#60秒一更新
+        for i in range(3):
             print("sleep:", i)
             time.sleep(1)

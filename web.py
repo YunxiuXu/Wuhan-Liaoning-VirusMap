@@ -4,11 +4,11 @@ import re
 
 import ssl
 
-#当使用urllib.urlopen打开一个 https 链接时，会验证一次 SSL 证书。而当目标网站使用的是自签名的证书时就会抛出异常 解决方法：全局取消证书验证
+
 info_txt = ""
 def getLiaoningCity():
     global info_txt
-    ssl._create_default_https_context = ssl._create_unverified_context
+    ssl._create_default_https_context = ssl._create_unverified_context #当使用urllib.urlopen打开一个 https 链接时，会验证一次 SSL 证书。而当目标网站使用的是自签名的证书时就会抛出异常 解决方法：全局取消证书验证
     # if has Chinese, apply decode()
     html = urlopen("http://wsjk.ln.gov.cn/wst_wsjskx/").read().decode('gb2312')
     soup = BeautifulSoup(html, features='lxml')
@@ -54,7 +54,7 @@ def getLiaoningCity():
     return city_num
 
 def writeEnd():#在末尾追加原文
-    f = open("liaoning.html", 'a')
+    f = open("liaoning.html", 'a', encoding = 'utf-8')
     ultstr = "<p><font size = \"5\">" + info_txt + "</font></p>" + "数据来源：辽宁省卫健委 <a href = http://wsjk.ln.gov.cn/wst_wsjskx/>http://wsjk.ln.gov.cn/wst_wsjskx/</a>"
     lab213 = "<p>网站归属于:<a href = http://lab213.cn/>http://Lab213.cn/</a></p>"
     f.write(ultstr)

@@ -44,7 +44,7 @@ class MyFTP:
             timeout = 60
             socket.setdefaulttimeout(timeout)
             # 0主动模式 1 #被动模式
-            self.ftp.set_pasv(False)
+            self.ftp.set_pasv(1)
             # 打开调试级别2，显示详细信息
             # self.ftp.set_debuglevel(2)
 
@@ -289,7 +289,7 @@ def ftp_upload():
     # my_ftp.download_file_tree("G:/ftp_test/", "App/AutoUpload/ouyangpeng/I12/")
 
     # 上传单个文件
-    my_ftp.upload_file("./liaoning.html", "./web/liaoning.html")
+    my_ftp.upload_file("./liaoning.html", "./web/liaoning.html")#你的目录
 
     # 上传目录
     #my_ftp.upload_file_tree("/web/zoukaicai/java8", "/123/5/")
